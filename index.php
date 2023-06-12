@@ -25,25 +25,62 @@
                 <h2>Genera una pasword sicura</h2>
             </div>
         </div>
-    </div>
-    <div class="container rounded-3 bg-white text-black p-3">
+    <?php 
+    include "functions.php";
+    if(isset($form_result)) {
+    ?>
         <div class="row">
-            <div class="col">Lunghezza</div>
-            <div class="col">
-                <form action="index.php" method="get">
-                    <input class="border" type="text" name="passwordLenght">
-                    <button class="btn btn-primary" type="submit" name="form">Invia</button>
-                </form>
+            <div class="col p-0">
+                <div class="alert alert-primary">
+                    <?php if(!is_numeric($number)) {
+                        echo 'mettere numero';
+                    } else {
+                        echo getRandomString($number);
+                    }
+                    ?>
+                </div>
             </div>
         </div>
+
+    <?php } ?>
+    </div>
+        
+    <div class="container rounded-3 bg-white text-black p-3">
         <div class="row">
-            <div class="col">Pasword</div>
-            <div class="col">
-                <?php 
-                include "functions.php";
-                echo getRandomString($number);
-                ?>
-            </div>
+            <form action="index.php" method="get">
+                <div class="row my-2">
+                    <div class="col-8">
+                        <label for="">Lunghezza</label>
+                    </div>
+                    <div class="col-4">
+                        <input class="border" type="text" name="passwordLenght">
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-8">
+                        <label for="">insiemi di caratteri</label>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="subset_azlower" value = "">
+                            <label class="form-check-label" for="subset_azlower">lettere a-z</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="subset_azupper" value = "">
+                            <label class="form-check-label" for="subset_azupper">lettere A-Z</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="$subset_numbers" value = "">
+                            <label class="form-check-label" for="$subset_numbers">lettere a-z</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col">
+                        <button class="btn btn-primary" type="submit" name="form">Invia</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     
